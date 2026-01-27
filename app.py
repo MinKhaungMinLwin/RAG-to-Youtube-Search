@@ -7,8 +7,17 @@ from youtube_search import YoutubeSearch
 from youtube_transcript_api import YouTubeTranscriptApi
 
 # 1. LOAD API KEY SECURELY
-load_dotenv() # This loads variables from .env file
-api_key = os.getenv("UPSTAGE_API_KEY")
+# load_dotenv() # This loads variables from .env file
+# api_key = os.getenv("UPSTAGE_API_KEY")
+# OLD CODE
+
+
+# NEW CODE FOR CLOUD DEPLOYMENT
+if "UPSTAGE_API_KEY" in st.secrets:
+    api_key = st.secrets["UPSTAGE_API_KEY"]
+else:
+    load_dotenv()
+    api_key = os.getenv("UPSTAGE_API_KEY")
 
 # Check if key exists
 if not api_key:
